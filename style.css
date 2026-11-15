@@ -112,3 +112,20 @@ footer {
     color: #8498b7;
     font-size: 13px;
 }
+
+#choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+#choices button {
+    flex: 1 1 220px;
+    min-height: 48px;
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
