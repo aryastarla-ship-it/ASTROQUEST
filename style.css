@@ -1,82 +1,158 @@
+/* =====================================
+   ASTROQUEST — MISSION CONTROL THEME
+   ===================================== */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+:root {
+    --bg: #060b18;
+    --panel: rgba(17, 29, 53, 0.88);
+    --panel-light: #172847;
+    --cyan: #63d8ff;
+    --blue: #318bff;
+    --text: #f1f7ff;
+    --muted: #a9bad2;
+    --border: rgba(99, 216, 255, 0.2);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background: #080d1c;
-    color: white;
+    background:
+        radial-gradient(ellipse at 50% -15%, #173c70 0%, transparent 48%),
+        radial-gradient(ellipse at 90% 70%, #101d3b 0%, transparent 45%),
+        var(--bg);
+    color: var(--text);
     min-height: 100vh;
+    line-height: 1.6;
 }
+
+/* HEADER */
 
 header {
     text-align: center;
-    padding: 30px 15px;
-    background: #111b35;
-    border-bottom: 2px solid #263e69;
+    padding: 48px 20px 40px;
+    background: linear-gradient(135deg, #101e3a, #0b1429);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 20%;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cyan), transparent);
 }
 
 header h1 {
-    color: #75caff;
-    font-size: 36px;
-    letter-spacing: 3px;
+    color: var(--cyan);
+    font-size: clamp(30px, 5vw, 48px);
+    letter-spacing: 5px;
+    text-shadow: 0 0 22px rgba(99, 216, 255, 0.4);
 }
 
 header p {
-    color: #b9c9df;
+    color: var(--muted);
     margin-top: 10px;
+    letter-spacing: 1px;
+    font-size: 15px;
 }
 
+/* MAIN LAYOUT */
+
 main {
-    max-width: 1000px;
-    margin: 35px auto;
-    padding: 20px;
+    max-width: 1050px;
+    margin: 40px auto;
+    padding: 0 22px;
 }
 
 section {
-    background: #131e36;
-    padding: 25px;
-    margin-bottom: 22px;
-    border: 1px solid #293e62;
-    border-radius: 14px;
+    background: var(--panel);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 28px;
+    margin-bottom: 25px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.25s ease, transform 0.25s ease;
 }
 
 h2 {
-    color: #75caff;
-    margin-bottom: 15px;
+    color: var(--cyan);
+    margin-bottom: 18px;
+    font-size: 23px;
 }
+
+/* WELCOME PANEL */
 
 .welcome {
     text-align: center;
-    padding: 40px 25px;
+    padding: 48px 30px;
+    background:
+        linear-gradient(135deg, rgba(22, 48, 85, 0.9), rgba(13, 25, 48, 0.95));
+}
+
+.welcome h2 {
+    font-size: 28px;
 }
 
 .welcome p {
-    color: #c2cee0;
-    line-height: 1.7;
-    margin-bottom: 25px;
+    color: var(--muted);
+    line-height: 1.9;
+    max-width: 720px;
+    margin: 0 auto 28px;
 }
 
+/* BUTTONS */
+
 button {
-    background: #1689d4;
+    background: linear-gradient(135deg, #1689d4, #2369d8);
     color: white;
-    border: none;
+    border: 1px solid rgba(117, 202, 255, 0.4);
     padding: 13px 28px;
-    border-radius: 8px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 5px 18px rgba(22, 137, 212, 0.2);
 }
 
 button:hover {
-    background: #36a9f2;
+    background: linear-gradient(135deg, #36b8f5, #347fff);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(54, 169, 242, 0.3);
 }
+
+button:active {
+    transform: translateY(0);
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* RESOURCE DASHBOARD */
 
 .resources {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
+    gap: 17px;
 }
 
 .resources h2 {
@@ -84,48 +160,497 @@ button:hover {
 }
 
 .resource-card {
-    background: #1c2b49;
-    padding: 22px;
-    border-radius: 10px;
+    background: linear-gradient(145deg, #1b3154, #12223e);
+    padding: 25px 18px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
     text-align: center;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.resource-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--cyan);
 }
 
 .resource-card h3 {
     font-size: 16px;
-    margin-bottom: 15px;
+    margin-bottom: 13px;
+    color: #dcecff;
 }
 
 .resource-card p {
-    color: #71d6ff;
-    font-size: 28px;
+    color: var(--cyan);
+    font-size: 32px;
     font-weight: bold;
+    text-shadow: 0 0 15px rgba(99, 216, 255, 0.2);
+}
+
+/* RESOURCE STATUS */
+
+.resource-healthy {
+    color: #4ade80 !important;
+}
+
+.resource-warning {
+    color: #facc15 !important;
+    animation: resourcePulse 1.5s infinite;
+}
+
+.resource-critical {
+    color: #ff5252 !important;
+    animation: resourcePulse 0.8s infinite;
+}
+
+@keyframes resourcePulse {
+    50% {
+        opacity: 0.55;
+    }
+}
+
+/* MISSION EVENT */
+
+.event {
+    border-color: rgba(99, 216, 255, 0.35);
+}
+
+.event h2 {
+    margin-bottom: 15px;
 }
 
 .event p {
-    color: #c2cee0;
-    line-height: 1.6;
+    color: #c5d4e9;
+    line-height: 1.8;
 }
 
-footer {
-    text-align: center;
-    padding: 25px;
-    color: #8498b7;
-    font-size: 13px;
-}
+/* CHOICES */
 
 #choices {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 20px;
+    gap: 13px;
+    margin-top: 24px;
 }
 
 #choices button {
     flex: 1 1 220px;
-    min-height: 48px;
+    min-height: 52px;
 }
 
-button:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
+/* MISSION PROGRESS */
+
+.progress-panel {
+    margin: 22px 0;
+    padding: 20px;
+    background: rgba(20, 39, 71, 0.85);
+    border: 1px solid var(--border);
+    border-radius: 13px;
 }
+
+#progressText {
+    display: block;
+    color: var(--cyan);
+    font-weight: bold;
+    margin-bottom: 13px;
+}
+
+.progress-track {
+    width: 100%;
+    height: 13px;
+    background: #263b5c;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #00b4d8, #63d8ff);
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(99, 216, 255, 0.5);
+    transition: width 0.5s ease;
+}
+
+/* NASA SCIENCE EXPLORER */
+
+.science > p {
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 24px;
+}
+
+.science-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.science-card {
+    background: linear-gradient(145deg, #1b3154, #12223e);
+    padding: 23px;
+    border: 1px solid #304b70;
+    border-radius: 14px;
+    transition: all 0.25s ease;
+}
+
+.science-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--cyan);
+    box-shadow: 0 8px 24px rgba(0, 160, 255, 0.12);
+}
+
+.science-card h3 {
+    color: var(--cyan);
+    margin-bottom: 12px;
+    font-size: 17px;
+}
+
+.science-card p {
+    color: #c2cee0;
+    line-height: 1.7;
+    margin-bottom: 18px;
+    font-size: 14px;
+}
+
+.science-card a {
+    color: var(--cyan);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.science-card a:hover {
+    text-decoration: underline;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    color: #8498b7;
+    font-size: 13px;
+    border-top: 1px solid rgba(99, 216, 255, 0.12);
+    margin-top: 30px;
+}
+
+/* RESULTS AND DYNAMIC CONTENT */
+
+#results {
+    border-color: rgba(99, 216, 255, 0.4);
+}
+
+main > section:last-child {
+    margin-bottom: 30px;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 600px) {
+    header {
+        padding: 35px 15px;
+    }
+
+    header h1 {
+        letter-spacing: 3px;
+    }
+
+    main {
+        margin: 25px auto;
+        padding: 0 13px;
+    }
+
+    section {
+        padding: 21px 17px;
+        border-radius: 14px;
+    }
+
+    .welcome {
+        padding: 35px 18px;
+    }
+
+    .welcome h2 {
+        font-size: 23px;
+    }
+
+    .resources {
+        grid-template-columns: 1fr;
+    }
+
+    .science-grid {
+        grid-template-columns: 1fr;
+    }
+
+    #choices {
+        flex-direction: column;
+    }
+
+    #choices button {
+        width: 100%;
+    }
+}
+/* MOON HERO IMAGE */
+
+.moon-container {
+    display: flex;
+    justify-content: center;
+    margin: 25px auto;
+}
+
+.hero-moon {
+    width: 190px;
+    height: 190px;
+    object-fit: contain;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 25px rgba(99, 216, 255, 0.3));
+    animation: moonFloat 5s ease-in-out infinite;
+}
+
+@keyframes moonFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-9px);
+    }
+}
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background-image:
+        radial-gradient(2px 2px at 20% 30%, white 50%, transparent 100%),
+        radial-gradient(1px 1px at 70% 20%, white 50%, transparent 100%),
+        radial-gradient(2px 2px at 85% 65%, #63d8ff 50%, transparent 100%),
+        radial-gradient(1px 1px at 40% 80%, white 50%, transparent 100%),
+        radial-gradient(2px 2px at 10% 90%, white 50%, transparent 100%);
+    background-size: 300px 300px;
+    opacity: 0.55;
+}
+.moon-container {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 25px auto;
+    min-height: 200px;
+}
+
+.hero-moon {
+    display: block !important;
+    width: 190px !important;
+    height: 190px !important;
+    object-fit: contain;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 25px rgba(99, 216, 255, 0.4));
+}
+.moon-container {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 25px auto;
+    min-height: 200px;
+}
+
+.hero-moon {
+    display: block !important;
+    width: 190px !important;
+    height: 190px !important;
+    object-fit: contain;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 25px rgba(99, 216, 255, 0.4));
+}
+.moon-container {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 25px auto;
+    min-height: 200px;
+}
+
+.hero-moon {
+    display: block !important;
+    width: 190px !important;
+    height: 190px !important;
+    object-fit: contain;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 25px rgba(99, 216, 255, 0.4));
+}
+
+
+/* LUNAR ORBIT EFFECT */
+
+.moon-container {
+    position: relative;
+    isolation: isolate;
+    min-height: 230px;
+}
+
+
+/* 3D LUNAR ORBIT */
+
+.moon-container {
+    position: relative;
+    isolation: isolate;
+}
+
+.moon-container::before,
+.moon-container::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 245px;
+    height: 85px;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotate(-20deg);
+    pointer-events: none;
+}
+
+.moon-container::before {
+    border-top-color: rgba(99, 216, 255, 0.9);
+    border-right-color: rgba(99, 216, 255, 0.9);
+    z-index: 2;
+}
+
+.moon-container::after {
+    border-bottom-color: rgba(99, 216, 255, 0.65);
+    border-left-color: rgba(99, 216, 255, 0.65);
+    z-index: 0;
+}
+
+.hero-moon {
+    position: relative;
+    z-index: 1;
+}
+
+
+.hero-moon {
+    position: relative;
+    z-index: 1;
+    display: block;
+    width: 190px;
+    height: 190px;
+    object-fit: contain;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 25px rgba(99, 216, 255, 0.4));
+}
+
+/* =================================
+   ASTROQUEST RESOURCE CONTROL PANEL
+   ================================= */
+
+.resource-card {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(
+        145deg,
+        rgba(27, 49, 84, 0.95),
+        rgba(12, 27, 51, 0.98)
+    );
+    padding: 28px 20px;
+    border: 1px solid rgba(99, 216, 255, 0.25);
+    border-radius: 16px;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.resource-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 15%;
+    width: 70%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #63d8ff,
+        transparent
+    );
+}
+
+.resource-card:hover {
+    transform: translateY(-6px);
+    border-color: #63d8ff;
+    box-shadow: 0 8px 28px rgba(49, 139, 255, 0.18);
+}
+
+.resource-card h3 {
+    color: #c8eaff;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    margin-bottom: 18px;
+}
+
+.resource-card p {
+    font-size: 36px;
+    font-weight: bold;
+    margin-top: 5px;
+    text-shadow: 0 0 18px currentColor;
+}
+
+/* RESOURCE STATUS GLOW */
+
+.resource-healthy {
+    color: #4ade80 !important;
+    text-shadow: 0 0 15px rgba(74, 222, 128, 0.35);
+}
+
+.resource-warning {
+    color: #facc15 !important;
+    text-shadow: 0 0 15px rgba(250, 204, 21, 0.35);
+}
+
+.resource-critical {
+    color: #ff5252 !important;
+    text-shadow: 0 0 15px rgba(255, 82, 82, 0.4);
+}
+
+/* MISSION CONTROL EVENT PANEL */
+
+.event {
+    position: relative;
+    overflow: hidden;
+    border-left: 3px solid #63d8ff;
+    background: linear-gradient(
+        120deg,
+        rgba(20, 42, 75, 0.98),
+        rgba(13, 25, 47, 0.98)
+    );
+}
+
+.event h2 {
+    letter-spacing: 0.5px;
+}
+
+.event p {
+    font-size: 15px;
+    line-height: 1.9;
+    margin-top: 10px;
+}
+
+/* DECISION CONTROL BUTTONS */
+
+#choices button {
+    background: linear-gradient(135deg, #173d68, #14558a);
+    border: 1px solid rgba(99, 216, 255, 0.4);
+    color: #e5f6ff;
+    border-radius: 11px;
+    padding: 15px 18px;
+    transition: all 0.25s ease;
+}
+
+#choices button:hover {
+    background: linear-gradient(135deg, #176ba7, #1689d4);
+    border-color: #8be3ff;
+    box-shadow: 0 0 18px rgba(99, 216, 255, 0.2);
+    transform: translateY(-3px);
+}
+

@@ -14,6 +14,9 @@ const events = [
     {
         title: "☀️ Solar Radiation Alert",
         description: "A simulated solar radiation event is approaching. Your crew must decide how to respond.",
+
+        science: "The Moon lacks Earth's thick atmosphere and global magnetic field. Solar Particle Events and galactic cosmic rays are important radiation hazards. NASA's CRaTER instrument studies the lunar radiation environment.",
+
         choices: [
             {
                 text: "Activate extra shielding",
@@ -30,6 +33,9 @@ const events = [
     {
         title: "⚡ Power Shortage",
         description: "The lunar base is experiencing a simulated power shortage.",
+
+        science: "Lunar power planning must consider sunlight, terrain and shadow periods. NASA's LRO mission provides terrain and illumination information that can support exploration planning.",
+
         choices: [
             {
                 text: "Reduce non-essential equipment",
@@ -46,6 +52,9 @@ const events = [
     {
         title: "💧 Life Support Warning",
         description: "The life-support system needs attention. Your crew must make a difficult decision.",
+
+        science: "A crewed habitat needs breathable air, water recovery, temperature control and waste management. NASA's ISS Environmental Control and Life Support System provides real examples of these technologies.",
+
         choices: [
             {
                 text: "Prioritize life-support systems",
@@ -63,6 +72,9 @@ const events = [
     {
         title: "🌡️ Thermal Control Alert",
         description: "The lunar habitat is facing a simulated temperature-control challenge. Your crew must protect the habitat while managing available resources.",
+
+        science: "The lunar surface experiences extreme temperature variations. NASA's Diviner Lunar Radiometer measures surface temperatures to help scientists understand the lunar thermal environment.",
+
         choices: [
             {
                 text: "Prioritise thermal control",
@@ -82,6 +94,7 @@ const events = [
             }
         ]
     }
+
 ];
 
 const startButton = document.getElementById("startMission");
@@ -101,9 +114,14 @@ function updateResources() {
 function showEvent() {
 
     const event = events[currentEvent];
+    document.getElementById("progressText").textContent =
+    `Mission Progress: Event ${currentEvent + 1} of ${events.length}`;
 
+document.getElementById("progressBar").style.width =
+    ((currentEvent + 1) / events.length * 100) + "%";
     missionMessage.textContent =
         event.title + " — " + event.description;
+        document.getElementById("scienceMessage").textContent = event.science;
 
     const choices = document.getElementById("choices");
 
@@ -216,7 +234,7 @@ results.innerHTML = `
         ${decisionsMade.map(decision => `<li>${decision}</li>`).join("")}
     </ul>
 
-    <p>Events completed: ${currentEvent + (completed ? 1 : 0)} / ${events.length}</p>
+    <p>Events completed: ${decisionsMade.length} / ${events.length}</p>
     <p>Educational simulation values, not live NASA measurements.</p>
 `;
 
@@ -250,4 +268,34 @@ startButton.addEventListener("click", function() {
     showEvent();
 });
 
-updateResources();
+function updateResources() {
+
+    const resourceElements = [
+        { id: "lifeSupport", value: resources.lifeSupport },
+        { id: "power", value: resources.power },
+        { id: "shielding", value: resources.shielding }
+    ];
+
+    resourceElements.forEach(function(resource) {
+
+        const element = document.getElementById(resource.id);
+
+        element.textContent = resource.value + "%";
+
+        element.classList.remove(
+            "resource-healthy",
+            "resource-warning",
+            "resource-critical"
+        );
+
+        if (resource.value > 50) {
+            element.classList.add("resource-healthy");
+        } 
+        else if (resource.value >= 25) {
+            element.classList.add("resource-warning");
+        } 
+        else {
+            element.classList.add("resource-critical");
+        }
+    });
+}

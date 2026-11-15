@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -17,6 +17,14 @@
     <main>
         <section class="welcome">
             <h2>Welcome to Mission Control</h2>
+            <div class="moon-container">
+    <img
+        src="https://svs.gsfc.nasa.gov/vis/a000000/a005000/a005001/moon_mosaic_print.jpg"
+        alt="NASA Moon"
+        class="hero-moon"
+        onerror="this.style.display='none'; console.log('Moon image failed to load');"
+    >
+</div>
             <p>
                 Your mission begins on the Moon.
                 Make smart decisions, manage resources
@@ -52,11 +60,82 @@
 
         <section class="event">
             <h2>Mission Updates</h2>
+            <div class="progress-panel">
+    <p id="progressText">Mission Progress: Awaiting Launch</p>
+
+    <div class="progress-track">
+        <div id="progressBar" class="progress-fill"></div>
+    </div>
+</div>
             <p id="missionMessage">
                 Awaiting mission instructions...
-            </p>
+            </p><!
+            <div class="science-info">
+    <h3>🔬 Mission Intelligence</h3>
+    <p id="scienceMessage">
+        Scientific information will appear here.
+    </p>
+</div>
         </section>
     </main>
+
+    <section class="science">
+    <h2>🔬 NASA Science & Data Explorer</h2>
+
+    <p>
+        ASTROQUEST uses lunar science and NASA research
+        to help astronauts understand the challenges
+        of exploring the Moon.
+    </p>
+
+    <div class="science-grid">
+
+        <div class="science-card">
+            <h3>🌡️ Diviner Lunar Radiometer</h3>
+            <p>
+                Studies lunar surface temperatures
+                and thermal environments.
+            </p>
+            <a href="https://pds.nasa.gov/" target="_blank">
+                Explore NASA Data
+            </a>
+        </div>
+
+        <div class="science-card">
+            <h3>☀️ CRaTER</h3>
+            <p>
+                Measures the radiation environment
+                in lunar orbit.
+            </p>
+            <a href="https://crater-web.sr.unh.edu/" target="_blank">
+                Explore CRaTER
+            </a>
+        </div>
+
+        <div class="science-card">
+            <h3>🌕 LOLA</h3>
+            <p>
+                Provides lunar elevation and
+                topography information.
+            </p>
+            <a href="https://ode.rsl.wustl.edu/moon/" target="_blank">
+                Explore Lunar Data
+            </a>
+        </div>
+
+        <div class="science-card">
+            <h3>🛰️ Lunar Reconnaissance Orbiter</h3>
+            <p>
+                Studies lunar topography, temperature,
+                illumination and other properties.
+            </p>
+            <a href="https://science.nasa.gov/mission/lro/" target="_blank">
+                Explore LRO
+            </a>
+        </div>
+
+    </div>
+</section>
 
     <footer>
         <p>ASTROQUEST | NASA Space Apps Challenge 2026</p>
